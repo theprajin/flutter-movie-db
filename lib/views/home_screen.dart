@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movies_db/constants/enum_category.dart';
+import 'package:movies_db/views/widgets/tab_bar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -6,13 +8,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 77,
           elevation: 0,
           flexibleSpace: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            height: 100,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            height: 120,
             child: SafeArea(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,13 +38,27 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
-              Tab(),
+              Tab(
+                text: 'Popular',
+              ),
+              Tab(
+                text: 'Top Rated',
+              ),
+              Tab(
+                text: 'Upcoming',
+              ),
             ],
           ),
         ),
-        body: const Placeholder(),
+        body: const TabBarView(
+          children: [
+            TabBarWidget(categoryType: CategoryType.Popular),
+            TabBarWidget(categoryType: CategoryType.Top_Rated),
+            TabBarWidget(categoryType: CategoryType.Upcoming),
+          ],
+        ),
       ),
     );
   }
