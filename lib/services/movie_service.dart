@@ -28,11 +28,11 @@ class MovieService {
           .map((e) => Movie.fromJson(e))
           .toList();
       return Right(extractData);
-    } on DioError catch (err, stack) {
+    } on DioError catch (err, s) {
       // return err.message;
       // print(err.type);
       // print(err.response!.statusCode);
-      print(stack);
+      //print(stack);
       return Left(err.toString());
     }
   }

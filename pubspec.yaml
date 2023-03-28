@@ -39,6 +39,8 @@ dependencies:
   flutter_riverpod: ^2.3.2
   dio: ^5.0.3
   dartz: ^0.10.1
+  flutter_spinkit: ^5.1.0
+  pod_player: ^0.1.0
 
 dev_dependencies:
   flutter_test:
