@@ -41,8 +41,16 @@ class Movie {
       title: json['title'] ?? '',
       overview: json['overview'],
       backdropPath: json['backdrop_path'] ?? '',
-      posterPath: json['poster_path'],
-      voteAverage: json['vote_average'],
+      posterPath:
+          'https://image.tmdb.org/t/p/w600_and_h900_bestv2/${json['poster_path']}',
+      voteAverage: '${json['vote_average']}',
     );
+  }
+
+  @override
+  String toString() {
+    return 'Movie('
+        'title: $title'
+        ')';
   }
 }

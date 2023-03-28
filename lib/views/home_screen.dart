@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_db/constants/enum_category.dart';
+import 'package:movies_db/constants/enums.dart';
 import 'package:movies_db/views/widgets/tab_bar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -38,25 +38,27 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          bottom: const TabBar(
+          bottom: TabBar(
             tabs: [
               Tab(
-                text: 'Popular',
+                text: CategoryType.Popular.name,
               ),
               Tab(
-                text: 'Top Rated',
+                text: CategoryType.Top_Rated.name,
               ),
               Tab(
-                text: 'Upcoming',
+                text: CategoryType.Upcoming.name,
               ),
             ],
           ),
         ),
         body: const TabBarView(
           children: [
-            TabBarWidget(categoryType: CategoryType.Popular),
-            TabBarWidget(categoryType: CategoryType.Top_Rated),
-            TabBarWidget(categoryType: CategoryType.Upcoming),
+            TabBarWidget(
+                categoryType: CategoryType.Popular, pageKey: 'popular'),
+            TabBarWidget(categoryType: CategoryType.Top_Rated, pageKey: 'top'),
+            TabBarWidget(
+                categoryType: CategoryType.Upcoming, pageKey: 'upcoming'),
           ],
         ),
       ),

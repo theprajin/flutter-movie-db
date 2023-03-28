@@ -12,12 +12,17 @@ class MovieService {
   final Dio dio;
   MovieService(this.dio);
 
-  Future<Either<String, List<Movie>>> getData(
-      {required String apiPath, required int page}) async {
+  Future<Either<String, List<Movie>>> getData({
+    required String apiPath,
+    required int page,
+  }) async {
     try {
       final response = await dio.get(
         apiPath,
-        queryParameters: {'api_key': Api.apiKey, 'page': page},
+        queryParameters: {
+          'api_key': Api.apiKey,
+          'page': page,
+        },
       );
       final extractData = (response.data['results'] as List)
           .map((e) => Movie.fromJson(e))
