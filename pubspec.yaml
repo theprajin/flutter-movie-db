@@ -41,6 +41,7 @@ dependencies:
   dartz: ^0.10.1
   flutter_spinkit: ^5.1.0
   pod_player: ^0.1.0
+  flutter_offline: ^2.1.0
 
 dev_dependencies:
   flutter_test:

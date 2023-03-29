@@ -9,34 +9,36 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer(
-        builder: (context, ref, child) {
-          final data = ref.watch(searchProvider);
-          return Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: searchController,
-                  onFieldSubmitted: (value) {},
-                  decoration: const InputDecoration(
-                      hintText: 'Search Movie',
-                      border: OutlineInputBorder(),
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: data.movies.length,
-                    itemBuilder: (context, index) {
-                      return Container();
-                    },
+      body: SafeArea(
+        child: Consumer(
+          builder: (context, ref, child) {
+            final data = ref.watch(searchProvider);
+            return Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: searchController,
+                    onFieldSubmitted: (value) {},
+                    decoration: const InputDecoration(
+                        hintText: 'Search Movie',
+                        border: OutlineInputBorder(),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
                   ),
-                )
-              ],
-            ),
-          );
-        },
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: data.movies.length,
+                      itemBuilder: (context, index) {
+                        return Container();
+                      },
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

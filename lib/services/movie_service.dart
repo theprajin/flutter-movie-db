@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movies_db/api.dart';
+import 'package:movies_db/api_exceptions/api_exception.dart';
 import 'package:movies_db/models/movie.dart';
 import 'package:movies_db/providers/client_provider.dart';
 
@@ -54,7 +55,7 @@ class MovieService {
       // print(err.type);
       // print(err.response!.statusCode);
       //print(stack);
-      return Left(err.toString());
+      return Left(DioException().getDioError(err));
     }
   }
 }
