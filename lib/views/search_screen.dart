@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
+
+import 'package:movies_db/constants/const_widgets.dart';
 import 'package:movies_db/providers/search_provider.dart';
+import 'package:movies_db/views/detail_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   final searchController = TextEditingController();
@@ -19,7 +25,10 @@ class SearchScreen extends StatelessWidget {
                 children: [
                   TextFormField(
                     controller: searchController,
-                    onFieldSubmitted: (value) {},
+                    onFieldSubmitted: (val) {
+                      ref.read(searchProvider.notifier).getSearch(val.trim());
+                      searchController.clear();
+                    },
                     decoration: const InputDecoration(
                         hintText: 'Search Movie',
                         border: OutlineInputBorder(),
@@ -27,13 +36,42 @@ class SearchScreen extends StatelessWidget {
                             EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
                   ),
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: data.movies.length,
-                      itemBuilder: (context, index) {
-                        return Container();
-                      },
-                    ),
-                  )
+                      child: data.isLoad
+                          ? const Center(child: CircularProgressIndicator())
+                          : data.isError
+                              ? Center(child: Text(data.errMessage))
+                              : GridView.builder(
+                                  //key: PageStorageKey<String>(pageKey),
+                                  itemCount: data.movies.length,
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                    childAspectRatio: 2 / 3,
+                                    crossAxisSpacing: 5,
+                                    mainAxisSpacing: 5,
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    final movie = data.movies[index];
+
+                                    return InkWell(
+                                      splashColor: Colors.green,
+                                      onTap: () {
+                                        Get.to(() => DetailScreen(
+                                              movie: movie,
+                                            ));
+                                      },
+                                      child: CachedNetworkImage(
+                                        errorWidget: (c, s, a) => Image.asset(
+                                            'assets/images/movie.png'),
+                                        imageUrl: movie.posterPath,
+                                        // placeholder: (c, s) => const Center(
+                                        //   child: CircularProgressIndicator(),
+                                        // ),
+                                        placeholder: (context, url) => dualRing,
+                                      ),
+                                    );
+                                  },
+                                ))
                 ],
               ),
             );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 import 'package:movies_db/constants/enums.dart';
 import 'package:movies_db/views/search_screen.dart';
 import 'package:movies_db/views/widgets/tab_bar_widget.dart';
@@ -32,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   IconButton(
                       onPressed: () {
-                        Get.to(SearchScreen());
+                        Get.to(() => SearchScreen());
                       },
                       icon: const Icon(
                         Icons.search,

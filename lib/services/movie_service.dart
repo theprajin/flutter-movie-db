@@ -46,6 +46,9 @@ class MovieService {
           'query': q,
         },
       );
+      if ((response.data['results'] as List).isEmpty) {
+        return const Left('Nothing Found\n Try using another keyword');
+      }
       final extractData = (response.data['results'] as List)
           .map((e) => Movie.fromJson(e))
           .toList();

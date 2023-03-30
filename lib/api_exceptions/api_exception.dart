@@ -5,12 +5,14 @@ class DioException {
     switch (dioError.type) {
       case DioErrorType.badResponse:
         return _handleStatusCode(dioError.response!);
-      case DioErrorType.connectionError:
-        if (dioError.message!.contains('SocketException')) {
-          return 'No Internet.';
-        } else {
-          return 'Unexpected error occured.';
-        }
+      // case DioErrorType.connectionError:
+      //   if (dioError.message!.contains('SocketException')) {
+      //     return 'No Internet.';
+      //   } else {
+      //     return 'Unexpected error occured.';
+      //   }
+      case DioErrorType.unknown:
+        return 'No Internet';
       default:
         return 'Something went wrong';
     }
