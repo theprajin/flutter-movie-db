@@ -71,6 +71,8 @@ class TabBarWidget extends StatelessWidget {
                 if (before == max) {
                   if (connect) {
                     ref.read(movieProvider(apiPath).notifier).loadMore();
+                  } else {
+                    _showToast();
                   }
                 }
                 return true;
@@ -95,14 +97,7 @@ class TabBarWidget extends StatelessWidget {
                               movie: movie,
                             ));
                       } else {
-                        Fluttertoast.showToast(
-                            msg: "Check your Internet Connection",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
+                        _showToast();
                       }
                     },
                     child: CachedNetworkImage(
@@ -122,5 +117,16 @@ class TabBarWidget extends StatelessWidget {
         }
       },
     );
+  }
+
+  void _showToast() {
+    Fluttertoast.showToast(
+        msg: "Check your Internet Connection",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 }

@@ -47,9 +47,23 @@ dependencies:
   fluttertoast: ^8.2.1
   flutter_native_splash: ^2.2.19
 
+# flutter_native_splash-development.yaml
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/mov.png
+  color_dark: "#121212"
+  image_dark: assets/images/mov.png
+
+  android_12:
+    image: assets/images/mov.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/images/mov.png
+    icon_background_color_dark: "#121212"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.12.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -57,7 +71,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  flutter_launcher_icons: ^0.12.0
 
 flutter_icons:
   android: "launcher_icon"

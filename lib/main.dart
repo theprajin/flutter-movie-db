@@ -8,6 +8,7 @@ import 'package:movies_db/views/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Future.delayed(const Duration(milliseconds: 500));
 
   await Hive.initFlutter();
 
