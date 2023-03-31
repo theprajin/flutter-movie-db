@@ -62,7 +62,7 @@ class SearchScreen extends StatelessWidget {
                                       },
                                       child: CachedNetworkImage(
                                         errorWidget: (c, s, a) => Image.asset(
-                                            'assets/images/movie.png'),
+                                            'assets/images/mov.png'),
                                         imageUrl: movie.posterPath,
                                         // placeholder: (c, s) => const Center(
                                         //   child: CircularProgressIndicator(),

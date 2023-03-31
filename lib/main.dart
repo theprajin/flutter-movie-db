@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:hive_flutter/adapters.dart';
+
 import 'package:movies_db/views/home_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+
+  await Hive.openBox<String>('movie');
+
   runApp(
     const ProviderScope(
       child: Home(),
