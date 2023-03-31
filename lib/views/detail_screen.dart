@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movies_db/constants/gap_sizes.dart';
 import 'package:pod_player/pod_player.dart';
 
 import 'package:movies_db/models/movie.dart';
@@ -27,16 +28,37 @@ class DetailScreen extends StatelessWidget {
                   //print(data[0]);
                   return data.isEmpty
                       ? const Center(child: Text('no keys were found'))
-                      : Container(
-                          height: 300,
-                          child: PlayVideoFromNetwork(
-                            videoKey: data[0],
+                      : Placeholder(
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.black,
+                            ),
+                            height: 300,
+                            child: PlayVideoFromNetwork(
+                              videoKey: data[0],
+                            ),
                           ),
                         );
                 },
                 error: (err, s) => Text('$err'),
                 loading: () => Container(),
-              )
+              ),
+              gapH6,
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  movie.title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                  ),
+                ),
+              ),
+              gapH10,
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(movie.overview),
+              ),
             ],
           );
         },
